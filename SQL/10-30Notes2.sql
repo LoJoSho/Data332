@@ -1,0 +1,19 @@
+-- Joins 4 tables together
+SELECT *
+FROM INVOICE_LINE IL, INVOICES I, CUSTOMER C, SALES_REP R
+WHERE IL.INVOICE_NUM = I.INVOICE_NUM
+AND I.CUST_ID = C.CUST_ID
+AND C.REP_ID = R.REP_ID
+
+
+SELECT REP_ID FROM CUSTOMER
+UNION 
+SELECT REP_ID FROM SALES_REP
+
+-- All recips except those with a customer
+SELECT REP_ID FROM SALES_REP
+EXCEPT
+SELECT REP_ID FROM CUSTOMER
+
+--Intersect Invoices in both the invoices and invoice line
+
