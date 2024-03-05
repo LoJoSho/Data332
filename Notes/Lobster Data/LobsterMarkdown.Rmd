@@ -1,0 +1,1 @@
+There are now `r nrow(lobsters)` total lobsters included in this report
