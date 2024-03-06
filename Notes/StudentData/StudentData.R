@@ -17,24 +17,79 @@ registration <- read_excel('data/Registration.xlsx', .name_repair = 'universal')
 students <- read_excel('data/Student.xlsx', .name_repair = 'universal')
 
 df <- left_join(students, registration, by = c('Student.ID'))
-df <- left_join(registration, course, by = c('Instance.ID'))
+df <- left_join(df, course, by = c('Instance.ID'))
 
-
-df_payment_plan <- df %>% 
-  group_by(Student.ID) %>%
+# Number 1
+df_majors <- df %>%
+  group_by(Title) %>%
   summarize(
-    payment_amount = mean(Balance.Due, na.rm = TRUE),
-    paymentplan = Payment.Plan
+    amountPerMajor = n()
   )
 
-df_payment_plan <- df_payment_plan %>%
-  dplyr::filter(payment_amount > 0)
-
-ggplot(df_payment_plan, aes(x = paymentplan, y = payment_amount)) + 
+ggplot(df_majors, aes(x = Title, y = amountPerMajor)) + 
   geom_col() +
   geom_bar(stat="identity", fill="orange") + 
   theme_dark() +
   theme(axis.text = element_text(angle = 45, vjust = .5, hjust = 1))
+# Number 2
+df$year <- str_sub(df$Birth.Date, 1, 4)
+
+df_birth_years <- df %>%
+  group_by(year) %>%
+  summarize(
+    studentPerYear = n()
+  )
+ggplot(df_birth_years, aes(x = year, y = studentPerYear)) + 
+  geom_col() +
+  geom_bar(stat="identity", fill="orange") + 
+  theme_dark() +
+  theme(axis.text = element_text(angle = 45, vjust = .5, hjust = 1))
+
+# Number 3
+df_cost_majors = df %>%
+  group_by(Title, Payment.Plan) %>%
+  summarize(
+    cost = mean(Cost)
+  )
+    
+ggplot(df_cost_majors, aes(
+  x = Title, 
+  y = cost,
+  fill = Payment.Plan
+  )) + 
+  geom_col(position = "dodge", color = "black") +
+  theme_dark() +
+  theme(axis.text = element_text(angle = 45, vjust = .5, hjust = 1))
+
+# Number 4
+df_balance_due_majors = df %>%
+  group_by(Title, Payment.Plan) %>%
+  summarize(
+    cost = mean(Balance.Due)
+  )
+
+ggplot(df_balance_due_majors, aes(
+  x = Title, 
+  y = cost,
+  fill = Payment.Plan
+)) + 
+  geom_col(position = "dodge", color = "black") +
+  theme_dark() +
+  theme(axis.text = element_text(angle = 45, vjust = .5, hjust = 1))
+
+
+#df_payment_plan <- df %>% 
+#  group_by(Payment.Plan) %>%
+#  filter(Balance.Due > 0) %>%
+#  summarize(
+#    payment_amount = mean(Balance.Due),
+#  )
+
+#ggplot(df_payment_plan, aes(x = Payment.Plan, y = payment_amount)) + 
+#  geom_col() +
+#  geom_bar(stat="identity", fill="orange") + 
+#  theme_dark() +
+#  theme(axis.text = element_text(angle = 45, vjust = .5, hjust = 1))
 
 
 
