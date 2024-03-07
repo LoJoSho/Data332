@@ -5,6 +5,7 @@ library(dplyr)
 library(tidyverse)
 library(tidyr)
 library(ggplot2)
+library(here)
 
 # Clear variables
 rm(list = ls())
@@ -31,6 +32,9 @@ ggplot(df_majors, aes(x = Title, y = amountPerMajor)) +
   geom_bar(stat="identity", fill="orange") + 
   theme_dark() +
   theme(axis.text = element_text(angle = 45, vjust = .5, hjust = 1))
+
+ggsave(here("images/NumberofStudentsPerMajor.png"))
+
 # Number 2
 df$year <- str_sub(df$Birth.Date, 1, 4)
 
@@ -44,6 +48,8 @@ ggplot(df_birth_years, aes(x = year, y = studentPerYear)) +
   geom_bar(stat="identity", fill="orange") + 
   theme_dark() +
   theme(axis.text = element_text(angle = 45, vjust = .5, hjust = 1))
+
+ggsave(here("images/NumberOfStudentBirthYears.png"))
 
 # Number 3
 df_cost_majors = df %>%
@@ -61,6 +67,8 @@ ggplot(df_cost_majors, aes(
   theme_dark() +
   theme(axis.text = element_text(angle = 45, vjust = .5, hjust = 1))
 
+ggsave(here("CostsPerMajorPaymentPlan.png"))
+
 # Number 4
 df_balance_due_majors = df %>%
   group_by(Title, Payment.Plan) %>%
@@ -76,6 +84,8 @@ ggplot(df_balance_due_majors, aes(
   geom_col(position = "dodge", color = "black") +
   theme_dark() +
   theme(axis.text = element_text(angle = 45, vjust = .5, hjust = 1))
+
+ggsave(here("BalanceDuePerMajor.png"))
 
 
 #df_payment_plan <- df %>% 
