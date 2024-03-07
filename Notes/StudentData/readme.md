@@ -2,16 +2,16 @@
 
 ## Number of Student in each Major
 
-![StudentMajors](images/NumberofStudentsPerMajor.png)
+<img src="images/NumberofStudentsPerMajor.png" height = 250, width = 400>
 
 ## Birth Years of Students
 
-![BirthYearStudents](images/NumberOfStudentBirthYears.png)
+<img src="images/NumberOfStudentBirthYears.png" height = 250, width = 400>
 
 ## Total Cost Per Major (By Payment Plans)
 
-![CostPerMajor](images/CostsPerMajorPaymentPlan.png)
+<img src="images/CostsPerMajorPaymentPlan.png" height = 250, width = 400>
 
 ## Total Balance due per Major (By Payment Plans)
 
-![PaymentsDue](images/BalanceDuePerMajor.png)
+<img src="images/BalanceDuePerMajor.png" height = 250, width = 400>
