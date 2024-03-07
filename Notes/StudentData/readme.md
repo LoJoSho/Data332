@@ -10,7 +10,7 @@
 
 ## Total Cost Per Major (By Payment Plans)
 
-![CostPerMajor](images/CostPerMajorPaymentPlan.png)
+![CostPerMajor](images/CostsPerMajorPaymentPlan.png)
 
 ## Total Balance due per Major (By Payment Plans)
 
