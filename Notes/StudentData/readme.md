@@ -2,7 +2,7 @@
 
 ## Number of Student in each Major
 
-[StudentMajors](Notes/StudentData/images/NumberofStudentsPerMajor.png)
+![StudentMajors](Notes/StudentData/images/NumberofStudentsPerMajor.png)
 
 ## Birth Years of Students
 
