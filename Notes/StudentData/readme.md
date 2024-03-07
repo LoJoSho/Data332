@@ -6,7 +6,12 @@
 
 ## Birth Years of Students
 
+![BirthYearStudents](images/NumberOfStudentBirthYears.png)
+
 ## Total Cost Per Major (By Payment Plans)
+
+![CostPerMajor](images/CostPerMajorPaymentPlan.png)
 
 ## Total Balance due per Major (By Payment Plans)
 
+![PaymentsDue](images/BalanceDuePerMajor.png)
