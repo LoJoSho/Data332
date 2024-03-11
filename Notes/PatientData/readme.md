@@ -14,4 +14,4 @@
 
 ## Avg Age for Visit Reasons
 
-<img src="images/AvgAgeForPatients.png" height = 800, width = 1200>
+![AvgAgeVisitReason](images/AvgAgeForPatients.png)
