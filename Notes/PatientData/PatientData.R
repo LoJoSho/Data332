@@ -75,7 +75,9 @@ ggplot(walkin_reasons, aes(
   theme_dark() +
   theme(axis.text = element_text(angle = 45, vjust = .5, hjust = 1))
 
-# NUmber 2 - Reason for visit based on City/State or zip code
+ggsave(here("images/ReasonForVisit.png"))
+
+# Number 2 - Reason for visit based on City/State or zip code
 
 visits_and_patients <- visit %>%
   left_join(patient)
@@ -97,9 +99,65 @@ ggplot(reasons_on_city, aes(
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) +
   labs(x = "Zip Code", y = "Amount")
 
+ggsave(here("images/VisitBasedonZipCode.png"))
+
 # Number 3 - Total invoice amount based on reason for visit. Segmented (stacked bar chart) with it was paid. 
 
 visit_payments <- visit %>%
   left_join(billing)
 
+visit_payments <- visit_payments %>%
+  group_by(Reason, InvoicePaid) %>%
+  summarize(
+    amount = sum(InvoiceAmt)
+  )
+
+## I assume this si what was meant?
+ggplot(visit_payments, 
+       aes(x = Reason, 
+           y = amount,
+           fill = InvoicePaid)) + 
+  geom_col(position = "stack") +
+  theme_dark() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) +
+  labs(y = "Amount")
+
+ggsave(here("images/InvoiceForVisit.png"))
+
+
 # Number 4 - And student is to find one insight into the data that they find interesting. In a chart.
+
+# Average age of patients for specific reasons
+
+reason_age <- visit %>%
+  left_join(patient)
+
+reason_age$Age <- {
+  birthdate <- as.Date(reason_age$BirthDate)
+  current_date <- Sys.Date()
+  
+  # Convert the date string to a Date object
+  date_object <- as.Date(birthdate)
+  
+  # Extract the year from the Date object
+  age_in_years <- as.integer(difftime(current_date, birthdate, units = "days") / 365.25)
+}
+
+reason_age <- reason_age %>%
+  group_by(Reason) %>%
+  summarize(
+    avg_age = mean(Age)
+  )
+
+ggplot(reason_age, aes(
+  x = Reason,
+  y = avg_age,
+  fill = Reason
+)) + 
+  geom_bar(stat = "identity", color = "black") +
+  theme_dark() +
+  scale_fill_manual(values = scales::hue_pal()(length(unique(reason_age$Reason)))) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) +
+  labs(x = "Reason", y = "Avergae Age")
+
+ggsave(here("images/AvgAgeForPatients.png"))
