@@ -14,4 +14,4 @@
 
 ## Avg Age for Visit Reasons
 
-![AvgAgeVisitReason](images/AvgAgeForPatients.png)
+![AvgAgeVisitReason](images/AvgAgeForPatient.png)
