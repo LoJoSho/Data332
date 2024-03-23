@@ -50,7 +50,7 @@ negative_complaints <- tidy_complaints %>%
   arrange(desc(count))
 ```
 
-<img src="images/TopAngristCompanies.png" height = 400, width = 800>
+![TopAngristCompanies](images/TopAngristCompanies.png)
 
 ### Top 25 Companies customers are most angry about
 
@@ -73,7 +73,7 @@ average_sentiment <- tidy_complaints %>%
   arrange(desc(average_sentiment_score))
 ```
 
-<img src="images/HowAngryCompanies.png" height = 400, width = 800>
+![TopAngristCompanies](images/HowAngryCompanies.png)
 
 ### Word Bubble
 
@@ -95,7 +95,7 @@ tidy_complaints %>%
   with(wordcloud(word, n, max.words = 100))
 ```
 
-<img src="images/HowAngryCompanies.png" height = 400, width = 800>
+![WordBubble](images/WordBubble.png)
 
 ## Conclusion
 
