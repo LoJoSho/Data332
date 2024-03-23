@@ -4,6 +4,8 @@
 
 In this repo, we analyze the Consumer complaints that people have had about business and attempt to find trends about businesses through different sentiments people have made about said organizations. 
 
+Sadly, the data is over 100 MB, which means that it can't be uploaded to GitHub. 
+
 ## Data Cleaning
 
 There wasn't a lot needed to clean the data. However, to get it to a manageable size with relevant information, we only included those which had consumer narratives attached to them.
